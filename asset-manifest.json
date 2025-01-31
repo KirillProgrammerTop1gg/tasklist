@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/schprj/static/css/main.6f8f3233.css",
+    "main.js": "/schprj/static/js/main.de84d700.js",
+    "index.html": "/schprj/index.html",
+    "main.6f8f3233.css.map": "/schprj/static/css/main.6f8f3233.css.map",
+    "main.de84d700.js.map": "/schprj/static/js/main.de84d700.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6f8f3233.css",
+    "static/js/main.de84d700.js"
+  ]
+}
