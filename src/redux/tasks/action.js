@@ -1,18 +1,5 @@
-export const addTask = text => {
-    return {
-        type: "addTask",
-        payload: text
-    };
-};
-export const delTask = taskId => {
-    return {
-        type: "delTask",
-        payload: taskId,
-    };
-};
-export const toggleCompleted = taskId => {
-    return {
-        type: "toggleCompleted",
-        payload: taskId,
-    };
-};
+import { createAction } from "@reduxjs/toolkit";
+
+export const addTask = createAction("addTask");
+export const delTask = createAction("delTask");
+export const toggleCompleted = createAction("toggleCompleted");

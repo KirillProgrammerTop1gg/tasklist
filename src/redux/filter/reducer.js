@@ -1,15 +1,12 @@
+import { createReducer } from "@reduxjs/toolkit";
+import { changeFilter } from "./action";
+
 const initialState = {
     status: 'all',
 };
 
-export const filtersReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'changeFilter':
-            return {
-                ...state,
-                status: action.payload,
-            }
-        default:
-            return state;
-    }
-}
+export const filtersReducer = createReducer(initialState, (builder) => {
+    builder.addCase(changeFilter, (state, action) => {
+        state.status = action.payload
+    });
+});
