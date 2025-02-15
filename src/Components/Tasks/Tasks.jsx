@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { delTask, toggleCompleted } from "../../redux/tasks/action";
+import { delTask, toggleCompleted } from "../../redux/tasksSlice";
 
 const Tasks = styled.ul`
     margin-top: 25px;
@@ -35,18 +35,18 @@ const Line = styled.div`
 export default () => {
     let tasks;
     const dispatch = useDispatch();
-    switch (useSelector(state => state.filters.status)) {
+    switch (useSelector(state => state.filter.status)) {
         case 'all':
-            tasks = useSelector(state => state.tasks);
+            tasks = useSelector(state => state.tasks.tasksList);
             break;
         case 'active':
-            tasks = useSelector(state => state.tasks).filter(task => !(task.completed));
+            tasks = useSelector(state => state.tasks.tasksList).filter(task => !(task.completed));
             break;
         case 'completed':
-            tasks = useSelector(state => state.tasks).filter(task => task.completed);
+            tasks = useSelector(state => state.tasks.tasksList).filter(task => task.completed);
             break;
         default:
-            tasks = useSelector(state => state.tasks);
+            tasks = useSelector(state => state.tasks.tasksList);
             break;
     }
     return (

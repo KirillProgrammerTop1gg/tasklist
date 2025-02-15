@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { addTask } from "../../redux/tasks/action";
+import { addTask } from "../../redux/tasksSlice";
 
 const AddTaskForm = styled.form`
     margin-top: 15px;

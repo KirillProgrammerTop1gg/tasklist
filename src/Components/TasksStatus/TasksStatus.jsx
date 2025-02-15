@@ -21,8 +21,8 @@ export default () => {
     return (
         <StatusSection>
             <SubTitle>Tasks Status</SubTitle>
-            <StatusInfo>Active: {useSelector(state => state.tasks).filter(task => !(task.completed)).length}</StatusInfo>
-            <StatusInfo>Completed: {useSelector(state => state.tasks).filter(task => task.completed).length}</StatusInfo>
+            <StatusInfo>Active: {useSelector(state => state.tasks.tasksList).filter(task => !(task.completed)).length}</StatusInfo>
+            <StatusInfo>Completed: {useSelector(state => state.tasks.tasksList).filter(task => task.completed).length}</StatusInfo>
         </StatusSection>  
     );
 }

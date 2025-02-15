@@ -1,12 +1,24 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { composeWithDevTools } from '@redux-devtools/extension';
-import { filtersReducer } from './filter/reducer.js';
-import { tasksReducer } from './tasks/reducer.js';
+import { filterReducer } from './filterSlice.js';
+import { tasksReducer } from './tasksSlice.js';
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
-export default configureStore({
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persisterTasksReducer = persistReducer(persistConfig, tasksReducer);
+const persisterFilterReducer = persistReducer(persistConfig, filterReducer);
+
+export const store = configureStore({
     reducer: {
-        tasks: tasksReducer,
-        filters: filtersReducer,
+        tasks: persisterTasksReducer,
+        filter: persisterFilterReducer,
     },
     devTools: composeWithDevTools(),
 });
+
+export const persisterStore = persistStore(store);

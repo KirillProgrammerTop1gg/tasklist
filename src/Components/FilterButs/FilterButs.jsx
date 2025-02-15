@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { changeFilter } from "../../redux/filter/action";
+import { changeFilter } from "../../redux/filterSlice";
 
 const FilterSection = styled.div`
     display: flex;
