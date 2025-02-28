@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { composeWithDevTools } from '@redux-devtools/extension';
 import { filterReducer } from './filterSlice.js';
 import { tasksReducer } from './tasksSlice.js';
@@ -10,14 +10,19 @@ const persistConfig = {
   storage,
 }
 
-const persisterTasksReducer = persistReducer(persistConfig, tasksReducer);
 const persisterFilterReducer = persistReducer(persistConfig, filterReducer);
 
 export const store = configureStore({
     reducer: {
-        tasks: persisterTasksReducer,
+        tasks: tasksReducer,
         filter: persisterFilterReducer,
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: ['persist/PERSIST'],
+            },
+        }),
     devTools: composeWithDevTools(),
 });
 

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { nanoid } from 'nanoid';
+import { fetchTasks, delTask, toggleCompleted, addTask } from "../tasksApi";
 
 const initialState = {
     tasksList: [],
@@ -8,22 +8,20 @@ const initialState = {
 const tasksSlice = createSlice({
     name: 'tasks',
     initialState,
-    reducers: {
-        addTask: (state, { payload }) => {
-            state.tasksList.push({
-                id: nanoid(),
-                text: payload,
-                completed: false,
-            })
-        },
-        delTask: (state, { payload }) => {
-            state.tasksList = state.tasksList.filter(task => task.id !== payload)
-        },
-        toggleCompleted: (state, { payload }) => {
-            state.tasksList = state.tasksList.map(task => task.id === payload ? { ...task, completed: !task.completed } : task)
-        }
+    extraReducers: (builer) => {
+        builer.addCase(fetchTasks.fulfilled, (state, {payload}) => {
+            state.tasksList = payload;
+        });
+        builer.addCase(delTask.fulfilled, (state, {payload}) => {
+            state.tasksList = state.tasksList.filter(task => task.id !== payload);
+        });
+        builer.addCase(toggleCompleted.fulfilled, (state, {payload}) => {
+            state.tasksList = state.tasksList.map(task => task.id === payload ? { ...task, completed: !task.completed } : task);
+        });
+        builer.addCase(addTask.fulfilled, (state, {payload}) => {
+            state.tasksList.push(payload);
+        });
     }
 });
 
 export const tasksReducer = tasksSlice.reducer;
-export const { addTask, delTask, toggleCompleted } = tasksSlice.actions;

@@ -34,17 +34,17 @@ export default () => {
             <SubTitle>Filter Tasks</SubTitle>
             <Filters>
                 <Filter>
-                    <ChangeBut onClick={(e) => dispatch(changeFilter('all'))}>
+                    <ChangeBut style={{backgroundColor: useSelector(state => state.filter.status)=='all' ? '#548eeb' : '#ababab'}} onClick={(e) => dispatch(changeFilter('all'))}>
                         All
                     </ChangeBut>    
                 </Filter>
                 <Filter>
-                    <ChangeBut onClick={(e) => dispatch(changeFilter('active'))}>
+                    <ChangeBut style={{backgroundColor: useSelector(state => state.filter.status)=='active' ? '#548eeb' : '#ababab'}} onClick={(e) => dispatch(changeFilter('active'))}>
                         Active
                     </ChangeBut>    
                 </Filter>
                 <Filter>
-                    <ChangeBut onClick={(e) => dispatch(changeFilter('completed'))}>
+                    <ChangeBut style={{backgroundColor: useSelector(state => state.filter.status)=='completed' ? '#548eeb' : '#ababab'}} onClick={(e) => dispatch(changeFilter('completed'))}>
                         Completed
                     </ChangeBut>    
                 </Filter>

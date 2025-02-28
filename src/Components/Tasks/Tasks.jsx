@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { delTask, toggleCompleted } from "../../redux/tasksSlice";
+import { fetchTasks, delTask, toggleCompleted } from "../../tasksApi";
+import { useEffect } from "react";
 
 const Tasks = styled.ul`
     margin-top: 25px;
@@ -35,6 +36,9 @@ const Line = styled.div`
 export default () => {
     let tasks;
     const dispatch = useDispatch();
+    useEffect(() => {    
+        dispatch(fetchTasks());
+    }, []);
     switch (useSelector(state => state.filter.status)) {
         case 'all':
             tasks = useSelector(state => state.tasks.tasksList);
@@ -52,7 +56,7 @@ export default () => {
     return (
         <Tasks>
             {tasks.map(task => <Task key={task.id}>
-                <CheckTask type="checkbox" checked={task.completed} onChange={() => dispatch(toggleCompleted(task.id))} />
+                <CheckTask type="checkbox" checked={task.completed} onChange={() => dispatch(toggleCompleted(task))} />
                 <TaskText>{task.text}</TaskText>
                 <DelTask onClick={() => dispatch(delTask(task.id))}>x</DelTask>
                 <Line />
