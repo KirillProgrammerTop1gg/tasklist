@@ -1,25 +1,19 @@
 import './App.css';
-import styled from 'styled-components';
-import Tasks from './Components/Tasks/Tasks';
-import AddTask from './Components/AddTask/AddTask';
-import TasksStatus from './Components/TasksStatus/TasksStatus';
-import FilterButs from './Components/FilterButs/FilterButs';
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
+import MainPage from './Components/MainPage/MainPage';
+import Header from './Components/Header/Header';
+import Reg from './Components/Reg/Reg';
+import Auth from './Components/Auth/Auth';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <Container>
-        <TasksStatus />
-        <FilterButs />
-      </Container>
-      <AddTask />
-      <Tasks />
+      <Header />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/reg" element={<Reg />} />
+        <Route path="/auth" element={<Auth />} />
+      </Routes>
     </div>
   );
 }
